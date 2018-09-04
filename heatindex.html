@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Sample Web App - Temperature Evaluator</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="heatindexstyle.css">
+  </head>
+  <body>
+    <u><center><h1>Temperature Evaluator</h1></center></u>
+    <p>This simple Web application allows you to enter the current temperature, in degrees Fahrenheit, and will then assesses whether it is hot, cold, or some other appropriate adjective.</p>
+    <form onsubmit="return false;">
+      <label>
+        Temp (F&deg;)
+        <input type="number" id="tempInput" value="0" />
+
+      </label>
+      <button onclick="assessTemperature();">Evaluate</button>
+      <h2><p><output id="result"></output></p></h2>
+    </form>
+    <script>
+      function assessTemperature() {
+        
+
+        var inputElem = document.querySelector('#tempInput');
+        var outputElem = document.querySelector('#result');
+        var temp = inputElem.value;
+        var feel;
+        if (temp > 90)
+          feel = 'hot';
+        else if (temp > 70)
+          feel = 'warm';
+        else if (temp > 50)
+          feel = 'nice';
+        else if (temp > 30)
+          feel = 'cool';
+        else
+          feel = 'cold';
+        outputElem.innerHTML = 'It is ' + feel + ' out there today.'
+
+        var relhum = prompt("Enter the percentage of relative humidity if you wish to find the heat index.")
+
+        relhum=relhum/100;
+
+         var index = -42.379 + 2.04901523 * temp + 10.14333127 * relhum - 0.22475541 * temp * relhum - 0.00683783 * temp^2 - 0.05481717 * relhum^2 + 0.00122874 * temp^2 * relhum + 0.00085282 * temp * relhum^2 - 0.00000199 * temp^2 * relhum^2;
+         alert("The heat index is "+index);
+       
+        }
+
+    </script>
+  </body>
+</html>
+
+<!--dont forget to put image for weather on github-->
